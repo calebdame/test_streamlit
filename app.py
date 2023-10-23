@@ -35,6 +35,18 @@ def get_user_agent():
     except:
         pass
 
+def get_screen_resolution():
+    script = '({width: window.screen.width, height: window.screen.height})'
+    try:
+        screen_res = st_javascript(script)
+        if screen_res:
+            width = screen_res.get('width')
+            height = screen_res.get('height')
+            formatted_res = f"{width}x{height}"
+    except:
+        return None
+
+
 user_agent_str = get_user_agent()
 st.session_state["uas"].append(user_agent_str)
 st.write(f"User-Agent: {user_agent_str}")  # Log the user-agent string
@@ -42,6 +54,12 @@ st.write(f"User-Agent: {user_agent_str}")  # Log the user-agent string
 ip_address = client_ip()  # now you have it in the host...
 
 st.session_state["ip"].append(ip_address)
+
+sr_address = get_screen_resolution()  # now you have it in the host...
+
+st.session_state["sr"].append(sr_address)
+
 st.write(ip_address)  # so you can log it, etc.
+st.write(sr_address)  # so you can log it, etc.
 
 st.write(st.session_state)
