@@ -4,6 +4,7 @@ from streamlit_javascript import st_javascript
 if len(st.session_state) == 0:
     st.session_state["ip"] = []
     st.session_state["uas"] = []
+    st.session_state["sr"] = []
     
 
 def client_ip():
