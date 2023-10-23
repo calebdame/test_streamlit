@@ -47,6 +47,19 @@ def get_screen_resolution():
     except:
         return None
 
+def get_screen_dimensions():
+
+    script = (f'const screenWidth = window.screen.width;'
+              f'const screenHeight = window.screen.height;'
+              f'({{width: screenWidth, height: screenHeight}})')
+
+    try:
+        dimensions = st_javascript(script)
+        if dimensions:
+            return dimensions
+    except:
+        pass
+
 
 user_agent_str = get_user_agent()
 st.session_state["uas"].append(user_agent_str)
@@ -56,7 +69,7 @@ ip_address = client_ip()  # now you have it in the host...
 
 st.session_state["ip"].append(ip_address)
 
-sr_address = get_screen_resolution()  # now you have it in the host...
+sr_address = get_screen_dimensions()  # now you have it in the host...
 
 st.session_state["sr"].append(sr_address)
 
