@@ -49,9 +49,7 @@ def get_screen_resolution():
 
 def get_screen_dimensions():
 
-    script = (f'const screenWidth = window.screen.width;'
-              f'const screenHeight = window.screen.height;'
-              f'({{width: screenWidth, height: screenHeight}})')
+    script = ('{width: window.screen.width, height: window.screen.height}')
 
     try:
         dimensions = st_javascript(script)
